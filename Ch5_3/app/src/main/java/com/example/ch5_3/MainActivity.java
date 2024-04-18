@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import javax.naming.Context;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
     private float original_size = 30;
     @Override
@@ -43,5 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.v("SIZE", "size = " +original_size + " px");
         txtOutput.setTextSize(TypedValue.COMPLEX_UNIT_PX, original_size);
         return false;
+    }
+
+    public static int px_sp(Context context, float pxValue) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontScale + 0.5f);
     }
 }
